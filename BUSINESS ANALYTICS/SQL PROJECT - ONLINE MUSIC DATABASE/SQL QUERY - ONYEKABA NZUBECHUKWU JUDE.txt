@@ -1,0 +1,71 @@
+REFRENCES: N/A
+
+
+1. /*TOP 10 ALBUMS IN 2010*/
+
+SELECT 
+  ar.Name Artist,
+  al.Title AlbumTitle,
+  al.AlbumId AlbumId,
+  inv.InvoiceDate DatePurchased,
+  SUM (inl.Quantity * inl.UnitPrice) AlbumSales
+FROM Artist ar
+JOIN Album al
+  ON ar.ArtistId = al.ArtistId
+JOIN Track tr
+  ON al.AlbumId = tr.AlbumId
+JOIN InvoiceLine inl
+  ON tr.TrackId = inl.TrackId
+JOIN Invoice inv
+  ON inl.InvoiceId = inv.InvoiceId
+WHERE inv.InvoiceDate BETWEEN '2010-01-01' AND '2011-01-01'
+GROUP BY AlbumTitle
+ORDER BY AlbumSales DESC
+LIMIT 10;
+
+
+
+2. /*Total Amount Spent based on country.*/
+
+SELECT 
+SUM(total) TotalAmountSpent,
+country Country 
+FROM customer cu,
+Invoice inv 
+WHERE cu.customerid = inv.customerid
+GROUP BY country
+ORDER BY TotalAmountSpent DESC;
+
+
+3./*Top 10 Genre based on highest Revenue.*/
+
+SELECT
+ge.Name GenreName, 
+SUM(Inl.UnitPrice) Revenue
+FROM Genre ge
+JOIN Track tr
+ON tr.GenreId = ge.GenreId
+JOIN InvoiceLine inl
+ON inl.TrackId = tr.TrackId
+GROUP BY ge.Name
+ORDER BY Revenue DESC
+LIMIT 10;
+
+4
+/*Popularity of Blues music by country.*/
+
+SELECT
+  inv.BillingCountry Country,
+  COUNT(ge.Name) NumberOfTracks
+FROM Invoice inv
+JOIN InvoiceLine inl
+  ON inv.InvoiceId = inl.InvoiceId
+JOIN Track tr
+  ON inl.TrackId = tr.TrackId
+JOIN Genre ge
+  ON tr.GenreId = ge.GenreId
+WHERE ge.Name = 'Blues'
+GROUP BY Country
+ORDER BY NumberOfTracks DESC;
+
+
