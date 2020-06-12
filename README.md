@@ -14,7 +14,7 @@ Project tasks:
 * I created a Profit & Loss statement with Scenario Manager from What-If Analysis Tool. 
 * I created a concise PowerPoint slide to compare Total Revenue for S&P 500 companies in the Agriculture Products and Oil & Gas Exploration & Production sectors from 2007 to 2016.
 
-# - Project #2 — Querying of Chinook Music Store Database using postgreSQL 
+# - Project #2 — Querying of Chinook Music Store Database using postgresSQL 
 Dataset: Chinook music store sales and employee database.
 Main tools: SQL, DB Browser for SQL Lite.
 Functions used: SELECT, FROM, JOIN, ON, GROUP BY, WHERE, LIMIT, ORDER BY, COUNT & SUM.
